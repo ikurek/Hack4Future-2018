@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1013619040772",
+    "firebase_url": "https://fridgeapp-6f736.firebaseio.com",
+    "project_id": "fridgeapp-6f736",
+    "storage_bucket": "fridgeapp-6f736.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013619040772:android:5f0b358872bf6c53",
+        "android_client_info": {
+          "package_name": "com.lostapiseekers.fridgeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013619040772-6mr96mola5kve11q6ggt2bu187bgdhme.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lostapiseekers.fridgeapp",
+            "certificate_hash": "96d414cbd423691af6334d4a31c1102f5344f474"
+          }
+        },
+        {
+          "client_id": "1013619040772-g2v82v636qtoi4mlogcg8t6ss2lmpj58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkDQzLE5wp0rrX6qkv5a_cgfn46qou_iw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013619040772-g2v82v636qtoi4mlogcg8t6ss2lmpj58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
