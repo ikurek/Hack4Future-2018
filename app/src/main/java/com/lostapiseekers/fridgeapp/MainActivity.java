@@ -39,8 +39,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        listView = (ListView) findViewById(R.id.);
-        itemText = (EditText) findViewById(R.id.);
+        listView = (ListView) findViewById(R.id.editText);
+        itemText = (EditText) findViewById(R.id.listView);
         itemList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, itemList);
 
@@ -68,9 +68,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         };
 
-        buttonAddItem = (Button) findViewById(R.id.);
-        buttonDelete = (Button) findViewById(R.id.);
-        buttonSaveList = (Button) findViewById(R.id.);
+        buttonAddItem = (Button) findViewById(R.id.buttonAddItem);
+        buttonDelete = (Button) findViewById(R.id.buttonDelete);
+        buttonSaveList = (Button) findViewById(R.id.buttonSaveList);
 
 
         buttonSaveList.setOnClickListener(this);
