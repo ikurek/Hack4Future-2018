@@ -2,6 +2,7 @@ package com.lostapiseekers.fridgeapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +24,8 @@ import java.util.ArrayList;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private DatabaseReference databaseReference;
+
+    private FirebaseAuth firebaseAuth;
 
     private Button buttonAddItem;
     private Button buttonDelete;
@@ -38,6 +44,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(this, "Login successful", Toast.LENGTH_LONG).show();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = null ;
+                        }
+                    }
+                });
+
 
         listView = (ListView) findViewById(R.id.listView);
         itemText = (EditText) findViewById(R.id.editText);
@@ -85,8 +110,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         UserList userList = new UserList(itemList);
         userList.itemList = getList();
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.setValue(userList);
+        databaseReference.child(user.getUid()).setValue(userList);
         Toast.makeText(this, "List Saved", Toast.LENGTH_LONG).show();
     }
 
@@ -100,5 +126,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public ArrayList getList() {
         return itemList;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
     }
 }
